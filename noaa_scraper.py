@@ -2,6 +2,11 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+# Run:
+#
+# $python3 noaa_scraper.py >result.txt
+#
+
 # NOAA Storm Events Search
 # All Storm Events in Florida between 07-01-2018 and 07-05-2019
 url = ""\
@@ -35,12 +40,14 @@ data = []
 for tr in rows:
 	# find all data elements, strip spaces
 	values = [td.text.strip() for td in tr.find_all('td')]   #list comprehension
-	#data.append( json.dumps(values) ) # transform to json
 	data.append(values)
 
 sz = len(data)
 # data[0] and data[1] are junk, data[sz-1] is totals; slice them out
 data = data[2:sz-1]
 
-print( json.dumps(titles) )
-print( json.dumps(data) )
+# insert titles at top of list
+data.insert(0, titles)
+
+# output formatted list with indent of 4...
+print( json.dumps(data, indent=4) )
