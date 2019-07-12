@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 # Run:
 #
-# $python3 noaa_scraper.py >result.txt
+# $python3 noaa_scraper.py >results.txt
 #
 
 # NOAA Storm Events Search
